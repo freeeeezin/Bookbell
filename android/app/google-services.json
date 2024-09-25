@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "311283732407",
+    "project_id": "bookbell-a8579",
+    "storage_bucket": "bookbell-a8579.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311283732407:android:03e457c198a3e49b39a232",
+        "android_client_info": {
+          "package_name": "com.example.bookbell"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-R0zJKrCfnjV5OzzMJ5LDQ2cebfcstWc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
