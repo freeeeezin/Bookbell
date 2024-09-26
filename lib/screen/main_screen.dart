@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:me/constants.dart';
+import 'package:me/controller/dialogController.dart';
 import 'package:me/screen/community/community_screen.dart';
 import 'package:me/screen/community/controller/community_controller.dart';
 import 'package:me/screen/home/home_screen.dart';
@@ -34,6 +35,7 @@ class _MainScreenState extends State<MainScreen> {
     final Authcontroller authcontroller = Get.find<Authcontroller>();
     final RouteController routeController = Get.put(RouteController());
     final CommunityController communityController = Get.put(CommunityController());
+    final Dialogcontroller dialogController = Get.put(CommunityController());
 
     return Scaffold(
       appBar:  PreferredSize(preferredSize: Size.fromHeight(40),

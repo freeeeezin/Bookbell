@@ -88,14 +88,14 @@ class _LikePageState extends State<LikePage> {
                             ],
                           ),
                         ),
-                         Expanded(
-                           flex: 1,
-                           child: GestureDetector(
-                               onTap: (){
-                                    LikeModel().like();
-                               },
-                               child: Icon(CupertinoIcons.heart, color: LikeModel().isLiked ? Colors.red : Colors.grey,)),
-                         )
+                         // Expanded(
+                         //   flex: 1,
+                         //   child: GestureDetector(
+                         //       onTap: (){
+                         //            LikeModel().like();
+                         //       },
+                         //       child: Icon(CupertinoIcons.heart, color: LikeModel().isLiked ? Colors.red : Colors.grey,)),
+                         // )
                       ]),
                     );
                   },

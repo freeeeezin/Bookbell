@@ -44,10 +44,6 @@ class _BookDetailState extends State<BookDetail> {
     };
     Book books = Book.fromMap(data);
 
-
-
-
-
     return  Scaffold(
         backgroundColor:mBackgroundColor ,
         appBar: AppBar(
@@ -70,13 +66,13 @@ class _BookDetailState extends State<BookDetail> {
                       ]
                 ),
               ),
-               IconButtons(books: books,),
+               IconButtons(itemIndex: widget.itemIndex,
+                 books: books),
                Padding(
                  padding: EdgeInsets.all(30),
                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-
                         Text("제목: ${books.title}"),
                         Text("작가: ${books.author}"),
                         Text("출판일: ${books.pubDate}"),

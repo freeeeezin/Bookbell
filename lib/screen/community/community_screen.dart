@@ -20,8 +20,8 @@ class CommunityScreen extends StatefulWidget {
 
 class _CommunityScreenState extends State<CommunityScreen> {
   final Authcontroller controller = Get.find<Authcontroller>();
-  final Dialogcontroller dialogController = Get.put(Dialogcontroller());
-  final CommunityController communityController = Get.put(CommunityController());
+  final Dialogcontroller dialogController =  Get.find<Dialogcontroller>();
+  final CommunityController communityController = Get.find<CommunityController>();
   final TextEditingController _controller = TextEditingController();
   String _search = '';
 
@@ -36,11 +36,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
     categoryValued = null;
   }
 
-  @override
-  void dispose() {
-    dialogController.dispose();
-    super.dispose();
-  }
+
 
   @override
   Widget build(BuildContext context) {

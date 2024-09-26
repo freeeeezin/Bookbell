@@ -52,7 +52,6 @@ class _SearchBookResultState extends State<SearchBookResult> {
       body:
       Column(
             children:[
-           
               Flexible(
                 child: _itmes.isNotEmpty ?
                 ListView.builder(itemBuilder:(context,index){

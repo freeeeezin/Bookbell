@@ -10,8 +10,10 @@ class Book  {
   final String pubDate;
   bool isLike;
 
+
+
   Book(  { required this.title,  required this.author,
-    required this.imageURL, required this.isbn,required this.description, required this.pubDate, this.isLike = false,});
+    required this.imageURL, required this.isbn,required this.description, required this.pubDate, required this.isLike });
 
   factory Book.fromMap(Map<String, dynamic> data){
     return Book(
@@ -36,5 +38,12 @@ class Book  {
     };
   }
 
-}
+
+  }
+
+
+
+
+
+
 

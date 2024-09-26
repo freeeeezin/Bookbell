@@ -1,11 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_common/get_reset.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:me/data/firebaseService.dart';
 
+import '../../auth/controller/AuthController.dart';
 import '../dto/Book.dart';
 
 class Userservice extends FirebaseService with ChangeNotifier{
+
+  final Authcontroller controller = Get.find<Authcontroller>();
 
   Userservice() : super('users');
 
@@ -17,7 +24,29 @@ class Userservice extends FirebaseService with ChangeNotifier{
     return await db.collection(collectionPath).doc(uid).get();
   }
 
+  //get User like-list
+  Future<bool> getLikeList(String email) async {
+    // Query the users collection
+    QuerySnapshot querySnapshot = await db.collection(collectionPath).where('email',isEqualTo: email).get();
 
+    // QuerySnapshot의 문서를 List<Map<String, dynamic>> 형태로 변환
+    List<Map<String, dynamic>> usersList = querySnapshot.docs.map((doc) {
+      return {
+        'id': doc.id, // 문서 ID 추가
+        ...doc.data() as Map<String, dynamic>, // 문서 데이터 추가
+      };
+    }).toList();
+
+    return usersList.first['like_list'][9]['isLike'];
+
+    print(usersList.first['like_list'][9]['isLike']);
+
+
+
+
+
+
+  }
   //add User
   Future<bool> addUser(Map<String,dynamic> data) async {
    print(data);
@@ -53,12 +82,10 @@ class Userservice extends FirebaseService with ChangeNotifier{
     await db.collection(collectionPath).doc(uid).delete();
   }
 
-
-  Future<void> addLikeListbyUser (Book bookInfo , String ? email) async{
-
+  Future<void> addLikeListbyUser (Book bookInfo, String? email) async{
 
    Map<String,dynamic> bookJson = bookInfo.toJson();
-   print(bookJson);
+
 
    try{
     CollectionReference users = db.collection(collectionPath);
@@ -68,13 +95,12 @@ class Userservice extends FirebaseService with ChangeNotifier{
 
     items.add(bookJson);
 
-     for( var doc in querySnapshot.docs){
-       await users.doc(doc.id).update({
-         'like_list': FieldValue.arrayUnion(items)
-       });
-     }
 
-
+     // for( var doc in querySnapshot.docs){
+     //   await users.doc(doc.id).update({
+     //     'like_list': FieldValue.arrayUnion(items)
+     //   });
+     // }
 
 
    }catch(e){
@@ -84,11 +110,44 @@ class Userservice extends FirebaseService with ChangeNotifier{
 
   }
 
-  Future<void> deleteLikeListbyUser (Book bookInfo, String uid) async{
+  Future<void> removeItemFromList (Book bookInfo, String? email) async{
+
+    Map<String,dynamic> bookJson = bookInfo.toJson();
+
+    try{
+      CollectionReference users = db.collection(collectionPath);
+      QuerySnapshot querySnapshot = await users.where('email',isEqualTo: email).get();
+
+      List<Map<String, dynamic>> usersList = querySnapshot.docs.map((doc) {
+        return {
+          'id': doc.id, // 문서 ID 추가
+          ...doc.data() as Map<String, dynamic>, // 문서 데이터 추가
+        };
+      }).toList();
+
+      // List<dynamic> Allitems = usersList.first['like_list'];
+
+      bookJson['isLike'] = true;
+
+      List<dynamic> remove_items = [];
+
+      Map<String,dynamic> data = bookJson;
+
+      remove_items = [data];
+
+      for( var doc in querySnapshot.docs){
+        await users.doc(doc.id).update({
+          'like_list': FieldValue.arrayRemove(remove_items)
+        });
+      }
+
+
+    }catch(e){
+      print('error');
+    }
+
 
   }
-
-
 
 
 
@@ -120,7 +179,42 @@ class Userservice extends FirebaseService with ChangeNotifier{
 
   }
 
+  Future<bool> validate(String isbn) async {
+    String? email = controller.user.value!.email;
+    bool result = false;
 
+    QuerySnapshot querySnapshot = await db.collection('users').where('email',isEqualTo: email).get();
+
+    // QuerySnapshot의 문서를 List<Map<String, dynamic>> 형태로 변환
+    List<Map<String, dynamic>> usersList = querySnapshot.docs.map((doc) {
+      return {
+        'id': doc.id, // 문서 ID 추가
+        ...doc.data() as Map<String, dynamic>, // 문서 데이터 추가
+      };
+    }).toList();
+
+    List<dynamic> items = usersList.first['like_list'];
+
+    String keyToCheck= 'isbn';
+
+    for (var item in items) {
+      if (item.containsKey(keyToCheck)) {
+        print('isbn value: ${item[keyToCheck]}');
+
+        if(item[keyToCheck] == isbn){
+          result = true;
+        }
+
+      } else {
+        print('Item: $item does not have key "$keyToCheck".');
+        result = false;
+      }
+    }
+
+    return result;
+
+
+  }
 
 
 }
