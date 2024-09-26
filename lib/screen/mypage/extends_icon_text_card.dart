@@ -229,7 +229,10 @@ class _ExtendsIconTextCardState extends State<ExtendsIconTextCard> {
                                   (BuildContext context, int index) =>
                                       Divider());
                         },
-                      ))),
+                      )
+                )
+
+            ),
           ],
         ),
       ),

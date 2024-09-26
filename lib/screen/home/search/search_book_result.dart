@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:me/constants.dart';
 import '../../../common/screen/appbar_screen.dart';
 import '../../../controller/dialogController.dart';
+import '../../../data/dto/Book.dart';
 import '../book_detail/book_detail.dart';
 
 class SearchBookResult extends StatefulWidget {
@@ -29,7 +30,15 @@ class _SearchBookResultState extends State<SearchBookResult> {
     // TODO: implement initState
     super.initState();
     _itmes = widget.bookList;
+
   }
+
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   // TODO: implement dispose
+  //
+  // }
 
 
 

@@ -60,29 +60,31 @@ class Userservice extends FirebaseService with ChangeNotifier{
    Map<String,dynamic> bookJson = bookInfo.toJson();
    print(bookJson);
 
-   // try{
-   //  CollectionReference users = db.collection(collectionPath);
-   //  QuerySnapshot querySnapshot = await users.where('email',isEqualTo: email).get();
-   //  List<dynamic> items =[];
-   //  items.add(data);
-   //
-   //   for( var doc in querySnapshot.docs){
-   //     await users.doc(doc.id).update({
-   //       'like_list': FieldValue.arrayUnion(items)
-   //     });
-   //   }
-   //
-   //
-   //
-   //
-   // }catch(e){
-   //
-   // }
+   try{
+    CollectionReference users = db.collection(collectionPath);
+    QuerySnapshot querySnapshot = await users.where('email',isEqualTo: email).get();
+    List<dynamic> items =[];
+
+
+    items.add(bookJson);
+
+     for( var doc in querySnapshot.docs){
+       await users.doc(doc.id).update({
+         'like_list': FieldValue.arrayUnion(items)
+       });
+     }
+
+
+
+
+   }catch(e){
+      print('error');
+   }
 
 
   }
 
-  Future<void> deleteLikeListbyUser (Map<String,dynamic> bookInfo, String uid) async{
+  Future<void> deleteLikeListbyUser (Book bookInfo, String uid) async{
 
   }
 

@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
-class Book with ChangeNotifier {
+class Book  {
 
   final String title;
   final String author;
   final String imageURL;
   final String isbn;
-    bool isLike  = false;
+  final String description;
+  final String pubDate;
+  bool isLike;
 
-  Book({ required this.title,  required this.author,
-    required this.imageURL, required this.isbn, required this.isLike,});
+  Book(  { required this.title,  required this.author,
+    required this.imageURL, required this.isbn,required this.description, required this.pubDate, this.isLike = false,});
 
   factory Book.fromMap(Map<String, dynamic> data){
     return Book(
@@ -17,6 +19,8 @@ class Book with ChangeNotifier {
       author: data['author'] ?? 'Unknown Author',
       imageURL: data['image'] ?? 'Unknown ImageURL',
       isbn: data['isbn'] ?? 'Unknown isbn',
+      description: data['description'] ?? 'null',
+      pubDate: data['pubDate'] ?? '',
       isLike: data['isLike'] ?? false
     );
   }
@@ -32,5 +36,5 @@ class Book with ChangeNotifier {
     };
   }
 
-
 }
+

@@ -34,10 +34,13 @@ class _CommunityScreenState extends State<CommunityScreen> {
     // TODO: implement initState
     super.initState();
     categoryValued = null;
-
-
   }
 
+  @override
+  void dispose() {
+    dialogController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

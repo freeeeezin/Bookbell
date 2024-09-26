@@ -11,28 +11,16 @@ import 'mypage_custom_widget.dart';
 
 class ProfileWidget extends StatefulWidget {
 
-
-   Map<String,dynamic> ? data;
-
+  Map<String,dynamic> ? data;
 
   ProfileWidget({super.key ,this.data,});
 
   @override
   State<ProfileWidget> createState() => _ProfileWidgetState();
 
-
-
-
 }
 
 class _ProfileWidgetState extends State<ProfileWidget> {
-
-  @override
-  void initState() {
-    // TODO: implement initState
-
-    super.initState();
-  }
 
   final Authcontroller controller = Get.find<Authcontroller>();
 
@@ -43,8 +31,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
         color: mBackgroundColor,
         child: Column(children: [
-          Expanded(
-            child: Row(
+           Row(
               children: [
                 Expanded(
                   flex: 1,
@@ -90,17 +77,20 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 onPressed: () async{
                                   controller.LogOut();
                                 },
-                                child: Text('로그아웃')))
+                                child: Text('로그아웃'))
+                        ),
+
+
+
                       ],
                     ),
                   ),
                 ),
               ],
             ),
-          ),
-          Expanded(
-              flex: 3,
-              child: MyPageCustomWidget())
+           Expanded(
+             flex: 10,
+               child: MyPageCustomWidget())
 
         ])
     );

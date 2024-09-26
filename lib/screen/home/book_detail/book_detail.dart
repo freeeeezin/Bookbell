@@ -12,6 +12,7 @@ import 'icon_button.dart';
 class BookDetail extends StatefulWidget {
   final Map<String,dynamic> bookInfo;
   final itemIndex;
+
   const BookDetail({super.key, required this.itemIndex, required this.bookInfo});
 
   @override
@@ -19,8 +20,33 @@ class BookDetail extends StatefulWidget {
 }
 
 class _BookDetailState extends State<BookDetail> {
+
+
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
+
+    Map<String, dynamic> data = {
+      "title": widget.bookInfo['title'],
+      "author":widget.bookInfo['author'],
+      "image":widget.bookInfo['image'],
+      "isbn":widget.bookInfo['isbn'],
+      "pubDate": widget.bookInfo['pubdate'].toString().formatDate(),
+      "isLike":widget.bookInfo['isLiked']
+
+    };
+    Book books = Book.fromMap(data);
+
+
+
+
 
     return  Scaffold(
         backgroundColor:mBackgroundColor ,
@@ -38,21 +64,22 @@ class _BookDetailState extends State<BookDetail> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.network(widget.bookInfo['image']
+                      Image.network(books.imageURL
                           ,width: 200
                           ,height: 200),
                       ]
                 ),
               ),
-               IconButtons(bookInfo: widget.bookInfo),
+               IconButtons(books: books,),
                Padding(
                  padding: EdgeInsets.all(30),
                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("제목: ${widget.bookInfo['title']}"),
-                        Text("작가: ${widget.bookInfo['author']}"),
-                        Text("출판일: ${(widget.bookInfo['pubdate'].toString().formatDate())}"),
+
+                        Text("제목: ${books.title}"),
+                        Text("작가: ${books.author}"),
+                        Text("출판일: ${books.pubDate}"),
                       ]
                   ),
                ),
@@ -60,7 +87,8 @@ class _BookDetailState extends State<BookDetail> {
                 padding: EdgeInsets.all(20),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
-                    children: [Text(widget.bookInfo['description'], style: TextStyle(fontSize: 19),)]
+                    children: [Text(widget.bookInfo['description'],
+                      style: TextStyle(fontSize: 19),)]
 
                 ),
               )
