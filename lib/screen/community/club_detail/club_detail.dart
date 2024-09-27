@@ -80,7 +80,7 @@ class ClubDetail extends StatelessWidget {
                       child: Icon(Icons.edit, color: mTextColor,)),
                   SizedBox(width: 18,),
 
-                  //삭제
+                  //
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,

@@ -66,8 +66,7 @@ class _BookDetailState extends State<BookDetail> {
                       ]
                 ),
               ),
-               IconButtons(itemIndex: widget.itemIndex,
-                 books: books),
+               // IconButtons(itemIndex: widget.itemIndex, books: books),
                Padding(
                  padding: EdgeInsets.all(30),
                  child: Column(

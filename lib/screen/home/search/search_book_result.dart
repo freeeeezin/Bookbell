@@ -1,7 +1,10 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:me/common/extension/common_format.dart';
 import 'package:me/constants.dart';
+import 'package:me/screen/home/book_detail/LikeModel.dart';
 import '../../../common/screen/appbar_screen.dart';
 import '../../../controller/dialogController.dart';
 import '../../../data/dto/Book.dart';
@@ -27,23 +30,22 @@ class _SearchBookResultState extends State<SearchBookResult> {
 
  @override
   void initState() {
-    // TODO: implement initState
+   Map<String,dynamic> data = {"isLiked" : true};
+   _itmes = widget.bookList;
+   _itmes.add(data);
     super.initState();
-    _itmes = widget.bookList;
 
   }
-
-  // @override
-  // void dispose() {
-  //   super.dispose();
-  //   // TODO: implement dispose
-  //
-  // }
-
 
 
   @override
   Widget build(BuildContext context) {
+
+
+
+
+
+
     return Scaffold(
       backgroundColor:mBackgroundColor ,
       appBar:  PreferredSize(preferredSize: Size.fromHeight(40),
@@ -55,10 +57,36 @@ class _SearchBookResultState extends State<SearchBookResult> {
               Flexible(
                 child: _itmes.isNotEmpty ?
                 ListView.builder(itemBuilder:(context,index){
+
+                  Map<String, dynamic> data = {
+                    "title": _itmes[index]['title'],
+                    "author":_itmes[index]['author'],
+                    "image":_itmes[index]['image'],
+                    "isbn":_itmes[index]['isbn'],
+                    "pubDate": _itmes[index]['pubdate'].toString().formatDate(),
+                    "isLiked":_itmes[index]['isLiked']
+
+                  };
+                  Book book = Book.fromMap(data);
+
+
+
                   return ListTile(
                     title: Text(_itmes[index]['title']),
                     subtitle: Text(authors = _itmes[index]['author'].replaceAll('^', ',')),
                     leading: Image.network(_itmes[index]['image'], width: 70,height: 70,),
+                    trailing: IconButton(
+                      icon:  SvgPicture.asset('assets/icons/heart.svg',  width: 18,
+                          color:   _itmes[index]['isLiked']? Colors.red : Colors.grey), // 좋아요 상태에 따라 색상 변경
+                      onPressed: () {
+                       setState(() {
+                         _itmes[index]['isLiked'] =! _itmes[index]['isLiked'];
+                       });
+
+                       LikeModel().likeStatus(book, _itmes[index]['isLiked'] );
+                        // LikeModel().toggleLike(index, _itmes[index]);
+                      },
+                    ),
                     onTap: (){
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) =>

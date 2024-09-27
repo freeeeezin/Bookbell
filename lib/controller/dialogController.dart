@@ -33,16 +33,31 @@ class Dialogcontroller extends GetxController {
             Get.back();
 
           }
-
-
       );
-
 
     }catch(e){
       print("Delete failed");
 
     }
 
+
+  }
+
+  void showLike(){
+
+    try{
+
+      Get.defaultDialog(
+          title: '알림',
+          middleText: '관심도서가 변경되었습니다.',
+
+
+      );
+
+    }catch(e){
+      print("Delete failed");
+
+    }
 
   }
 
