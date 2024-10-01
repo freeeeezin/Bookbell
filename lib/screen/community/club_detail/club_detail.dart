@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:me/common/extension/common_format.dart';
 import 'package:me/constants.dart';
+import 'package:me/screen/mypage/EditScreen.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../../auth/controller/AuthController.dart';
@@ -76,7 +77,9 @@ class ClubDetail extends StatelessWidget {
                       backgroundColor: Colors.white,
                       elevation: 0,
                     ),
-                      onPressed: (){},
+                      onPressed: (){
+                        Get.to(Editscreen(club: club,clubIndex: clubIndex));
+                      },
                       child: Icon(Icons.edit, color: mTextColor,)),
                   SizedBox(width: 18,),
 

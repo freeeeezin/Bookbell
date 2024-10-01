@@ -13,16 +13,16 @@ import '../../../common/screen/appbar_screen.dart';
 import '../../../models/book_keyword.dart';
 
 class AddClubScreen extends StatefulWidget {
-  const AddClubScreen({super.key});
+  const AddClubScreen( {super.key});
 
   @override
   State<AddClubScreen> createState() => _AddClubScreenState();
 }
 
 class _AddClubScreenState extends State<AddClubScreen> {
-  final TextEditingController _titleController = TextEditingController();
-  final TextEditingController _categoryController = TextEditingController();
-  final TextEditingController _contentController = TextEditingController(
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController categoryController = TextEditingController();
+  final TextEditingController contentController = TextEditingController(
       text: '[ 독서 모임 모집 내용 예시 ] \n예상 모집인원:\n장소:\n지원방법:\n(ex.이메일,카카오 오픈채팅방 등)'
   );
   final Authcontroller authcontroller = Get.find<Authcontroller>();
@@ -32,9 +32,9 @@ class _AddClubScreenState extends State<AddClubScreen> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    _titleController.dispose();
-    _categoryController.dispose();
-    _contentController.dispose();
+    titleController.dispose();
+    categoryController.dispose();
+    contentController.dispose();
   }
 
   @override
@@ -47,9 +47,9 @@ class _AddClubScreenState extends State<AddClubScreen> {
   }
 
   void _clear() {
-    _titleController.clear();
-    _categoryController.clear();
-    _contentController.clear();
+    titleController.clear();
+    categoryController.clear();
+    contentController.clear();
   }
 
 
@@ -59,9 +59,9 @@ class _AddClubScreenState extends State<AddClubScreen> {
 
       await FirebaseFirestore.instance.collection('community').add({
 
-        'title': _titleController.text,
+        'title': titleController.text,
         'category': _selectedValue,
-        'content': _contentController.text,
+        'content': contentController.text,
         "createdDate": DateTime.now(),
         "creator": authcontroller.user.value?.displayName,
         "creatorMail": authcontroller.user.value?.email
@@ -117,7 +117,7 @@ class _AddClubScreenState extends State<AddClubScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextField(
-                    controller: _titleController,
+                    controller: titleController,
                     maxLines: null,
                     style: TextStyle(
                         color: Colors.black,
@@ -151,7 +151,7 @@ class _AddClubScreenState extends State<AddClubScreen> {
                   height: 20,
                 ),
                 TextField(
-                    controller: _contentController,
+                    controller: contentController,
                     maxLines: null,
                     keyboardType: TextInputType.multiline,
                     textInputAction: TextInputAction.newline,
@@ -181,7 +181,8 @@ class _AddClubScreenState extends State<AddClubScreen> {
               ],
             ),
           ),
-        ));
+        )
+    );
   }
 
 

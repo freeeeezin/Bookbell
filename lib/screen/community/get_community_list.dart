@@ -67,7 +67,7 @@ class _GetCommunityListState extends State<GetCommunityList> {
               onTap: (){
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) =>
-                    ClubDetail(clubIndex: index, club: data)
+                    ClubDetail(clubIndex: index, club: data )
                     ));
               },
             );

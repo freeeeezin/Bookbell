@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:me/screen/mypage/EditScreen.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../auth/controller/AuthController.dart';
@@ -8,6 +9,7 @@ import '../../constants.dart';
 import '../../controller/dialogController.dart';
 
 class MyClubPage extends StatefulWidget {
+
   const MyClubPage({super.key});
 
   @override
@@ -17,6 +19,8 @@ class MyClubPage extends StatefulWidget {
 class _MyClubPageState extends State<MyClubPage> {
   Authcontroller controller = Get.find<Authcontroller>();
   Dialogcontroller dialogController = Get.find<Dialogcontroller>();
+  bool isModifying = false;
+  int modifyingIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +78,9 @@ class _MyClubPageState extends State<MyClubPage> {
                                       .color(mTextColor)
                                       .make()),
                               TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Get.to(Editscreen(club: data));
+                                  },
                                   child: '수정'
                                       .text
                                       .color(Colors.black)
