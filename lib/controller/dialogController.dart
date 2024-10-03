@@ -18,10 +18,9 @@ class Dialogcontroller extends GetxController {
     );
   }
 
-  void deldialog(uid){
+  void deldialogCommunity(uid){
 
     try{
-
       CommunityController controller = CommunityController();
       Get.defaultDialog(
           title: '알림',
@@ -42,6 +41,7 @@ class Dialogcontroller extends GetxController {
 
 
   }
+
 
   void showLike(){
 

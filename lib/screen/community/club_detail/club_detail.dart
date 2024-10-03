@@ -90,7 +90,7 @@ class ClubDetail extends StatelessWidget {
                       elevation: 0
                     ),
                       onPressed: (){
-                        dialogController.deldialog('${club['uid']}');
+                        dialogController.deldialogCommunity('${club['uid']}');
                       }, child: Icon(CupertinoIcons.delete, color: Vx.red400,)),
                 ],
               )

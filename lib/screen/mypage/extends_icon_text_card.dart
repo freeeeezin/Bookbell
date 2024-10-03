@@ -208,7 +208,7 @@ class _ExtendsIconTextCardState extends State<ExtendsIconTextCard> {
                                             TextButton(
                                                 onPressed: () {
                                                   dialogController
-                                                      .deldialog(data['uid']);
+                                                      .deldialogCommunity(data['uid']);
                                                 },
                                                 child: '삭제'
                                                     .text

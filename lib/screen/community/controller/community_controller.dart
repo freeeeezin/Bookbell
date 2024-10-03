@@ -23,6 +23,20 @@ class CommunityController extends Dialogcontroller {
 
   }
 
+  void delLike(isbn) async {
+    if(isbn != null){
+      await FirebaseFirestore.instance.collection('user')
+          .doc(isbn).delete().then(
+            (doc) =>
+            Get.to(MainScreen()),
+        // print("Document deleted"),
+        onError: (e) => print("Error updating document $e"),
+      );
+
+    } else('uid 없음');
+
+  }
+
 
 
 
