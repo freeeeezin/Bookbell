@@ -31,10 +31,6 @@ class _GetCommunityListState extends State<GetCommunityList> {
     return StreamBuilder<QuerySnapshot>(
       stream: base.
           where("category",isEqualTo: widget.categoryValued).
-          //
-          // where("title",isGreaterThanOrEqualTo:  widget.textValued).
-          // where("title",isLessThanOrEqualTo:  widget.textValued ).
-
 
       snapshots(),
       builder: (context, snapshot) {

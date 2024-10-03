@@ -68,16 +68,16 @@ class _LoginWidgetState extends State<LoginWidget> {
                         // controller.registerWithSNS('google');
                       },
                     ),
-                    InkWell(
-                        child: Image.asset('assets/image/n_logo.png', width: 60,),
-                        onTap: () {
-                          controller.Login('naver');
-                        }),
-                    InkWell(
-                        child: Image.asset('assets/image/k_logo.png', width: 60),
-                        onTap: () {
-                          controller.Login('kakao');
-                        }),
+                    // InkWell(
+                    //     child: Image.asset('assets/image/n_logo.png', width: 60,),
+                    //     onTap: () {
+                    //       controller.Login('naver');
+                    //     }),
+                    // InkWell(
+                    //     child: Image.asset('assets/image/k_logo.png', width: 60),
+                    //     onTap: () {
+                    //       controller.Login('kakao');
+                    //     }),
                   ],
                   // Image.asset('assets/image/google_logo.png',)
                 ),
