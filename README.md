@@ -18,13 +18,12 @@
 # 프로젝트 소개
 관심있는 도서의 정보를 얻을수 있으며 커뮤니티를 통해 도서모임을 직접 생성및 가입할 수 있는 서비스.
 
- <img width="100" src="https://github.com/user-attachments/assets/51c5a7d6-4994-44fc-bfd4-697abfc0572a"/>
-  <img width="100" src="https://github.com/user-attachments/assets/c7c6452f-9b3e-4d3e-958d-4e91b2c6b9e1"/>
-  <imr width="100" src="https://github.com/user-attachments/assets/6b297e7d-58fe-45a2-9db5-c9f780ab17ac"/>
-  <imr width="100" src="https://github.com/user-attachments/assets/cbc7279e-52d0-4cc5-9b70-c1e70e09d89a"/>
-  <imr width="100" src="https://github.com/user-attachments/assets/a2cd3f0b-9004-4f4b-b660-780d8054e046"/>
-  <imr width="100" src="https://github.com/user-attachments/assets/0662024a-1dda-4ca4-9af8-cee1c36320c3"/>
-
+  <img width="150" src="https://github.com/user-attachments/assets/51c5a7d6-4994-44fc-bfd4-697abfc0572a"/>
+  <img width="150" src="https://github.com/user-attachments/assets/0662024a-1dda-4ca4-9af8-cee1c36320c3"/>
+  <img width="150" src="https://github.com/user-attachments/assets/c7c6452f-9b3e-4d3e-958d-4e91b2c6b9e1"/>
+  <img width="150" src="https://github.com/user-attachments/assets/6b297e7d-58fe-45a2-9db5-c9f780ab17ac"/>
+  <img width="150" src="https://github.com/user-attachments/assets/cbc7279e-52d0-4cc5-9b70-c1e70e09d89a"/>
+  <img width="150" src="https://github.com/user-attachments/assets/a2cd3f0b-9004-4f4b-b660-780d8054e046"/>
 
 
 
