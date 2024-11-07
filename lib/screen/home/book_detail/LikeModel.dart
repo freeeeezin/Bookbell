@@ -25,7 +25,7 @@ class LikeModel with ChangeNotifier  {
 
   List<Map<String, dynamic>> usersList = [];
   List<dynamic> bookList = [];
-  bool result = false;
+  bool results = false;
 
 
 
