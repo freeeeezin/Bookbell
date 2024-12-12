@@ -14,31 +14,18 @@ import '../../../controller/dialogController.dart';
 import '../../../models/book_club_model.dart';
 
 class ClubDetail extends StatelessWidget {
-
-  final Map<String,dynamic> club;
+  final Map<String, dynamic> club;
   final clubIndex;
-
-
 
   const ClubDetail({super.key, required this.clubIndex, required this.club});
 
-
-
-
-
-
   @override
   Widget build(BuildContext context) {
+    var timestamp = club['createdDate'] as Timestamp;
 
-
-      var timestamp = club['createdDate'] as Timestamp;
-
-      var dateTime = timestamp.toDate();
-      print(dateTime);
-      var formatDate = DateFormat('yyyy.MM.dd').format(dateTime);
-
-
-
+    var dateTime = timestamp.toDate();
+    print(dateTime);
+    var formatDate = DateFormat('yyyy.MM.dd').format(dateTime);
 
     final Authcontroller controller = Get.find<Authcontroller>();
     final Dialogcontroller dialogController = Get.put(Dialogcontroller());
@@ -47,7 +34,12 @@ class ClubDetail extends StatelessWidget {
       backgroundColor: mBackgroundColor,
       appBar: AppBar(
         automaticallyImplyLeading: true,
-        title: 'BookBell'.text.xl4.black.fontFamily(GoogleFonts.dancingScript().fontFamily!).make(),
+        title: 'BookBell'
+            .text
+            .xl4
+            .black
+            .fontFamily(GoogleFonts.dancingScript().fontFamily!)
+            .make(),
         backgroundColor: mBackgroundColor,
       ),
       body: SingleChildScrollView(
@@ -57,55 +49,63 @@ class ClubDetail extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text("제목: ${club['title']}"),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               Text("작성자: ${club['creator']}"),
-              SizedBox(height: 5,),
+              SizedBox(
+                height: 5,
+              ),
               Text("작성일: ${formatDate}"),
-
+              Text("작성일: ${formatDate}"),
+              Text("작성일: ${formatDate}"),
               Divider(),
-              SizedBox(height: 5,),
+              SizedBox(
+                height: 5,
+              ),
               Text("내용: ${club['content']}"),
-
-              SizedBox(height: 40,),
-              if( controller.user.value?.email == club['creatorMail'] && controller.user.value != null )
+              SizedBox(
+                height: 40,
+              ),
+              if (controller.user.value?.email == club['creatorMail'] &&
+                  controller.user.value != null)
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  //수정
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      elevation: 0,
+                  children: [
+                    //수정
+                    ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          elevation: 0,
+                        ),
+                        onPressed: () {
+                          Get.to(Editscreen(club: club, clubIndex: clubIndex));
+                        },
+                        child: Icon(
+                          Icons.edit,
+                          color: mTextColor,
+                        )),
+                    SizedBox(
+                      width: 18,
                     ),
-                      onPressed: (){
-                        Get.to(Editscreen(club: club,clubIndex: clubIndex));
-                      },
-                      child: Icon(Icons.edit, color: mTextColor,)),
-                  SizedBox(width: 18,),
 
-                  //
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      elevation: 0
-                    ),
-                      onPressed: (){
-                        dialogController.deldialogCommunity('${club['uid']}');
-                      }, child: Icon(CupertinoIcons.delete, color: Vx.red400,)),
-                ],
-              )
-
-
-
-
-
+                    //
+                    ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white, elevation: 0),
+                        onPressed: () {
+                          dialogController.deldialogCommunity('${club['uid']}');
+                        },
+                        child: Icon(
+                          CupertinoIcons.delete,
+                          color: Vx.red400,
+                        )),
+                  ],
+                )
             ],
           ),
-
         ),
       ),
     );
   }
-
-
 }
