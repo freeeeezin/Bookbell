@@ -61,6 +61,7 @@ class ClubDetail extends StatelessWidget {
               Text("작성자: ${club['creator']}"),
               SizedBox(height: 5,),
               Text("작성일: ${formatDate}"),
+              Text("test code"),
 
               Divider(),
               SizedBox(height: 5,),
